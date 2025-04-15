@@ -65,14 +65,7 @@ export class AddUserPage extends BasePage {
   getErrorMessage(labelText: string): Locator {
     return this.container.getByText(labelText)
     .locator('..').locator('..').locator('span')
-
-      // .getByText('Should be at least 5 characters')
      .first();
-  }
-
-
-  getSuccessMessage(labelText: string): Locator {
-    return this.container.getByText('Successfully Saved').first();
   }
 
   async selectDropdown(labelText: string, option:string) {

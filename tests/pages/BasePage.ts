@@ -16,6 +16,10 @@ export class BasePage {
         this.container = page.locator('.oxd-layout-context');
     }
 
+    get getSuccessfullMessage(){
+        return this.page.locator("div.oxtoast-content--success")
+    }
+
     async goToMenu(menuName: string) {
         await this.sidebar.clickMenuItem(menuName);
     }

@@ -195,7 +195,7 @@ test('Verify Confirm Password field', async ({ page }) => {
     await addNewUserPage.getErrorMessage('User Role').isVisible();
 
     //Verify Successful message
-    await expect(page.getByText('Successfully Saved')).toBeVisible();
+    await expect(addNewUserPage.getSuccessfullMessage).toHaveText('Successfully Saved');
 
     //Verify display added user at User List page
     await userListPage.isLoaded();
