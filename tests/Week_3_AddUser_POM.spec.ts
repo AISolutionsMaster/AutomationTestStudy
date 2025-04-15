@@ -219,7 +219,7 @@ test('Verify Confirm Password field', async ({ page }) => {
     await userListPage.username.fill(process.env.newUserName ?? '');
     await userListPage.searchButton.click();
 
-    await userListPage.verifyUserInTable(process.env.newUserName ?? '','ESS',process.env.employeeName ?? '','Enabled');
+    await userListPage.verifyUserInTable(process.env.newUserName ?? '','ESS', process.env.employeeName ?? '','Enabled');
     await userListPage.DeleteButton.click();
     await page.locator("//button[normalize-space()='Yes, Delete']/..//button[normalize-space()='Yes, Delete']").click();
   })
