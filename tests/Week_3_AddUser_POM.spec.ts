@@ -97,24 +97,19 @@ test('Verify Username field', async ({ page }) => {
   //Verify Username = Blank
   await addNewUserPage.username.fill('');
   await addNewUserPage.saveButton.click();
-  await addNewUserPage.getErrorMessage('Username').isVisible();
-  let Username_ErrorMessage = await addNewUserPage.getErrorMessage('Username').textContent();
-  expect(Username_ErrorMessage).toBe('Required');
+  await expect(addNewUserPage.getErrorMessage('Username')).toHaveText('Required');
 
   //Verify hiển thị thông báo lỗi nếu nhập < 5 ký tự
   await addNewUserPage.username.fill('111');
-  Username_ErrorMessage = await addNewUserPage.getErrorMessage('Username').textContent();
-  expect(Username_ErrorMessage).toBe('Should be at least 5 characters');
+  await expect(addNewUserPage.getErrorMessage('Username')).toHaveText('Should be at least 5 characters');
 
   //Verify hiển thị thông báo lỗi nếu nhập > 40 ký tự
   await addNewUserPage.username.fill('11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111');
-  Username_ErrorMessage = await addNewUserPage.getErrorMessage('Username').textContent();
-  expect(Username_ErrorMessage).toBe('Should not exceed 40 characters');
+  await expect(addNewUserPage.getErrorMessage('Username')).toHaveText('Should not exceed 40 characters');
 
   //Verify hiển thị thông báo lỗi nếu Username đã tồn tại
   await addNewUserPage.username.fill('Admin');
-  Username_ErrorMessage = await addNewUserPage.getErrorMessage('Username').textContent();
-  expect(Username_ErrorMessage).toBe('Already exists');
+  await expect(addNewUserPage.getErrorMessage('Username')).toHaveText('Already exists');
 })
 
 test('Verify Password field', async ({ page }) => {
