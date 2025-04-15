@@ -187,7 +187,7 @@ test('Verify Confirm Password field', async ({ page }) => {
     await addNewUserPage.isLoaded();
     await addNewUserPage.selectDropdown('User Role', 'ESS');
     await addNewUserPage.selectDropdown('Status', 'Enabled');
-    await addNewUserPage.selectEmployeeName(process.env.employeeName ?? '');
+    await addNewUserPage.selectEmployeeName(process.env.employeeFullName ?? '');
     await addNewUserPage.username.fill(process.env.newUserName ?? '');
     await addNewUserPage.password.fill(process.env.password ?? '');
     await addNewUserPage.confirmPassword.fill(process.env.password ?? '');
