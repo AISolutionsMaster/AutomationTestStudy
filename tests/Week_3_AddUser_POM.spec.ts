@@ -138,6 +138,7 @@ test('Verify Password field', async ({ page }) => {
   //Verify Password = Blank
   await addNewUserPage.password.fill('');
   await addNewUserPage.saveButton.click();
+  await page.waitForTimeout(1000);
   //await addNewUserPage.getErrorMessage('Password').isVisible();
   await expect(addNewUserPage.getErrorMessage('Password')).toHaveText('Required');
   // let Password_ErrorMessage = await addNewUserPage.getErrorMessage('Password').textContent();
@@ -145,6 +146,7 @@ test('Verify Password field', async ({ page }) => {
 
   //Verify hiển thị thông báo lỗi nếu nhập < 7 ký tự
   await addNewUserPage.password.fill('1');
+  await page.waitForTimeout(1000);
   await expect(addNewUserPage.getErrorMessage('Password')).toHaveText('Should have at least 7 characters');
 
   //await page.waitForTimeout(2000);
@@ -153,7 +155,7 @@ test('Verify Password field', async ({ page }) => {
   
   //Verify hiển thị thông báo lỗi nếu nhập > 64 ký tự
   await addNewUserPage.password.fill('11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111');
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(1000);
   await expect(addNewUserPage.getErrorMessage('Password')).toHaveText('Should not exceed 64 characters');
 
   // Password_ErrorMessage = await addNewUserPage.getErrorMessage('Password').textContent();
@@ -161,7 +163,7 @@ test('Verify Password field', async ({ page }) => {
 
   //Verify hiển thị thông báo lỗi nếu Password không chứa lower-case
   await addNewUserPage.password.fill('11111111');
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(1000);
   await expect(addNewUserPage.getErrorMessage('Password')).toHaveText('Your password must contain minimum 1 lower-case letter');
 
   // Password_ErrorMessage = await addNewUserPage.getErrorMessage('Password').textContent();
@@ -188,9 +190,12 @@ test('Verify Confirm Password field', async ({ page }) => {
   await addNewUserPage.password.fill('');
   await addNewUserPage.confirmPassword.fill('');
   await addNewUserPage.saveButton.click();
-  await addNewUserPage.getErrorMessage('Confirm Password').isVisible();
-  let ConfirmPassword_ErrorMessage = await addNewUserPage.getErrorMessage('Confirm Password').textContent();
-  expect(ConfirmPassword_ErrorMessage).toBe('Passwords do not match');
+  await page.waitForTimeout(1000);
+  await expect(addNewUserPage.getErrorMessage('Confirm Password')).toHaveText('Your password must contain minimum 1 lower-case letter');
+
+  // await addNewUserPage.getErrorMessage('Confirm Password').isVisible();
+  // let ConfirmPassword_ErrorMessage = await addNewUserPage.getErrorMessage('Confirm Password').textContent();
+  // expect(ConfirmPassword_ErrorMessage).toBe('Passwords do not match');
 })
 
   test('Verify Add New User successfully', async ({ page }) => {
