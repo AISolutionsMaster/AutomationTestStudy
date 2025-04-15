@@ -11,7 +11,7 @@ test.describe('Add New User Test Suite', () => {
   test('Verify User Role field', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(process.env.userName ?? '', process.env.password ?? '');
 
     const dashboardPage = new DashboardPage(page);
     await dashboardPage.isLoaded();
@@ -34,7 +34,7 @@ test.describe('Add New User Test Suite', () => {
   test('Verify Employee Name field', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(process.env.userName ?? '', process.env.password ?? '');
 
     const dashboardPage = new DashboardPage(page);
     await dashboardPage.isLoaded();
@@ -58,7 +58,7 @@ test.describe('Add New User Test Suite', () => {
   test('Verify Status field', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(process.env.userName ?? '', process.env.password ?? '');
 
     const dashboardPage = new DashboardPage(page);
     await dashboardPage.isLoaded();
@@ -81,7 +81,7 @@ test.describe('Add New User Test Suite', () => {
 test('Verify Username field', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto();
-  await loginPage.login('Admin', 'admin123');
+  await loginPage.login(process.env.userName ?? '', process.env.password ?? '');
 
   const dashboardPage = new DashboardPage(page);
   await dashboardPage.isLoaded();
@@ -122,7 +122,7 @@ test('Verify Username field', async ({ page }) => {
 test('Verify Password field', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto();
-  await loginPage.login('Admin', 'admin123');
+  await loginPage.login(process.env.userName ?? '', process.env.password ?? '');
 
   const dashboardPage = new DashboardPage(page);
   await dashboardPage.isLoaded();
@@ -164,7 +164,7 @@ test('Verify Password field', async ({ page }) => {
 test('Verify Confirm Password field', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto();
-  await loginPage.login('Admin', 'admin123');
+  await loginPage.login(process.env.userName ?? '', process.env.password ?? '');
 
   const dashboardPage = new DashboardPage(page);
   await dashboardPage.isLoaded();
@@ -189,7 +189,7 @@ test('Verify Confirm Password field', async ({ page }) => {
   test('Verify Add New User successfully', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(process.env.userName ?? '', process.env.password ?? '');
 
     const dashboardPage = new DashboardPage(page);
     await dashboardPage.isLoaded();
@@ -203,10 +203,10 @@ test('Verify Confirm Password field', async ({ page }) => {
     await addNewUserPage.isLoaded();
     await addNewUserPage.selectDropdown('User Role', 'ESS');
     await addNewUserPage.selectDropdown('Status', 'Enabled');
-    await addNewUserPage.selectEmployeeName('Timo');
-    await addNewUserPage.username.fill('HaTest');
-    await addNewUserPage.password.fill('HaTest@123');
-    await addNewUserPage.confirmPassword.fill('HaTest@123');
+    await addNewUserPage.selectEmployeeName(process.env.employeeName ?? '');
+    await addNewUserPage.username.fill(process.env.newUserName ?? '');
+    await addNewUserPage.password.fill(process.env.password ?? '');
+    await addNewUserPage.confirmPassword.fill(process.env.password ?? '');
     await addNewUserPage.saveButton.click();
     await addNewUserPage.getErrorMessage('User Role').isVisible();
 
@@ -215,16 +215,16 @@ test('Verify Confirm Password field', async ({ page }) => {
 
     //Verify display added user at User List page
     await userListPage.isLoaded();
-    await userListPage.username.fill('HaTest');
+    await userListPage.username.fill(process.env.newUserName ?? '');
     await userListPage.searchButton.click();
-    await userListPage.verifyUserInTable('HaTest','ESS','Timothy Amiano','Enabled');
+    await userListPage.verifyUserInTable(process.env.newUserName ?? '','ESS','Timothy Amiano','Enabled');
 
   })
 
   test('Verify Delete New User successfully', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
-    await loginPage.login('Admin', 'admin123');
+    await loginPage.login(process.env.userName ?? '', process.env.password ?? '');
 
     const dashboardPage = new DashboardPage(page);
     await dashboardPage.isLoaded();
@@ -233,10 +233,10 @@ test('Verify Confirm Password field', async ({ page }) => {
     const userListPage = new UserListPage(page);
     await userListPage.isLoaded();
    
-    await userListPage.username.fill('HaTest');
+    await userListPage.username.fill(process.env.newUserName ?? '');
     await userListPage.searchButton.click();
 
-    await userListPage.verifyUserInTable('HaTest','ESS','Christine Jennings','Enabled');
+    await userListPage.verifyUserInTable(process.env.newUserName ?? '','ESS','Christine Jennings','Enabled');
     await userListPage.DeleteButton.click();
     await page.locator("//button[normalize-space()='Yes, Delete']/..//button[normalize-space()='Yes, Delete']").click();
   })
