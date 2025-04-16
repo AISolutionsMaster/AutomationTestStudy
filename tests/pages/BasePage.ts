@@ -17,7 +17,7 @@ export class BasePage {
     }
 
     get getSuccessfullMessage(){
-        return this.page.locator('.oxd-toast-content--success .oxd-toast-content-text')
+        return this.page.locator('.oxd-toast-content--success .oxd-text--toast-message')
     }
 
     async goToMenu(menuName: string) {
