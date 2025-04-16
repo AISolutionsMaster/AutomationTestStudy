@@ -17,16 +17,12 @@ export class BasePage {
     }
 
     get getSuccessfullMessage(){
-        return this.page.locator(".oxd-toast-content-text")
+        return this.page.locator(".oxd-toast-content--success")
     }
 
     async goToMenu(menuName: string) {
         await this.sidebar.clickMenuItem(menuName);
     }
-
-    // async getUsername(): Promise<string> {
-    //     return this.headerbar.getUsername();
-    // }
 
     async logout(): Promise<void> {
         await this.headerbar.logout();

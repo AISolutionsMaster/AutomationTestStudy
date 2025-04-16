@@ -192,7 +192,7 @@ test('Verify Confirm Password field', async ({ page }) => {
     await addNewUserPage.password.fill(process.env.password ?? '');
     await addNewUserPage.confirmPassword.fill(process.env.password ?? '');
     await addNewUserPage.saveButton.click();
-    await addNewUserPage.getErrorMessage('User Role').isVisible();
+    //await addNewUserPage.getErrorMessage('User Role').isVisible();
 
     //Verify Successful message
     await expect(addNewUserPage.getSuccessfullMessage).toHaveText('Successfully Saved');
